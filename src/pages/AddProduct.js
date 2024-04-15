@@ -32,7 +32,7 @@ const AddProduct = () => {
     e.preventDefault();
 
     // Make a POST request to submit the form data
-    fetch("http://localhost:8000/product/add", {
+    fetch("https://mw-project-be.vercel.app//product/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -135,7 +135,7 @@ const AddProduct = () => {
             type="number"
             value={formData.rating}
             //input must be betwen 1-5 as it's displayed as "num"/5 , set some kind of limit on client-side
-            onChange={handleInputChange} 
+            onChange={handleInputChange}
           />
         </div>
 

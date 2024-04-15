@@ -15,7 +15,7 @@ const ProductPage = () => {
       setIsLoggedIn(true);
     }
 
-    fetch(`http://localhost:8000/product/${id}`)
+    fetch(`https://mw-project-be.vercel.app//product/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -30,12 +30,15 @@ const ProductPage = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/product/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      });
+      const response = await fetch(
+        `https://mw-project-be.vercel.app//product/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         console.log(data.message);
@@ -70,8 +73,8 @@ const ProductPage = () => {
       );
     }
     let pr_title =
-      product.title.length > 20 ?
-        product.title.slice(0, 25) + "..."
+      product.title.length > 20
+        ? product.title.slice(0, 25) + "..."
         : product.title;
 
     alert(`${pr_title} (${product.quantity}) was added to cart!`);
