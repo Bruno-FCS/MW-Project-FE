@@ -32,7 +32,7 @@ const AddProduct = () => {
     e.preventDefault();
 
     // Make a POST request to submit the form data
-    fetch("https://mw-project-be.vercel.app//product/add", {
+    fetch("https://mw-project-be.vercel.app/product/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

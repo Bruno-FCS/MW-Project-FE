@@ -31,7 +31,7 @@ const EditProduct = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://mw-project-be.vercel.app//product/edit/${id}`,
+          `https://mw-project-be.vercel.app/product/edit/${id}`,
           {
             headers: {
               Authorization: token,
@@ -81,7 +81,7 @@ const EditProduct = () => {
       quantity: updatedProduct.quantity,
     };
 
-    fetch(`https://mw-project-be.vercel.app//product/edit/${id}`, {
+    fetch(`https://mw-project-be.vercel.app/product/edit/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

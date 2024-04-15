@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://mw-project-be.vercel.app//user/login",
+        "https://mw-project-be.vercel.app/user/login",
         {
           method: "POST",
           headers: {

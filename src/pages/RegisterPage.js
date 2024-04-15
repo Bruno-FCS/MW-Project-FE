@@ -36,7 +36,7 @@ const Register = () => {
 
     try {
       const response = await fetch(
-        "https://mw-project-be.vercel.app//user/register",
+        "https://mw-project-be.vercel.app/user/register",
         {
           method: "POST",
           headers: {

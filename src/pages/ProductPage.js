@@ -15,7 +15,7 @@ const ProductPage = () => {
       setIsLoggedIn(true);
     }
 
-    fetch(`https://mw-project-be.vercel.app//product/${id}`)
+    fetch(`https://mw-project-be.vercel.app/product/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -31,7 +31,7 @@ const ProductPage = () => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `https://mw-project-be.vercel.app//product/${id}`,
+        `https://mw-project-be.vercel.app/product/${id}`,
         {
           method: "DELETE",
           headers: {

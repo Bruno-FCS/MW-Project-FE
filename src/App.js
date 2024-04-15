@@ -13,7 +13,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://mw-project-be.vercel.app//")
+    fetch("https://mw-project-be.vercel.app/")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching data:", error));
