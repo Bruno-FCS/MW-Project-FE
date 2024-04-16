@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +32,7 @@ const AddProduct = () => {
     e.preventDefault();
 
     // Make a POST request to submit the form data
-    fetch("http://localhost:8000/product/add", {
+    fetch("https://mw-project-be.vercel.app/product/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +68,7 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="add-product-container">
+    <div className="add-book-container">
       <Navbar />
       <h1>Add Product</h1>
       <form onSubmit={handleSubmit}>
@@ -135,9 +134,8 @@ const AddProduct = () => {
             name="rating"
             type="number"
             value={formData.rating}
-            max={5}
-            min={0}
-            onChange={handleInputChange} 
+            //input must be betwen 1-5 as it's displayed as "num"/5 , set some kind of limit on client-side
+            onChange={handleInputChange}
           />
         </div>
 
@@ -154,7 +152,6 @@ const AddProduct = () => {
 
         <input className="btn btn-primary" type="submit" value="Submit" />
       </form>
-      <Footer pos={"absolute"}/>
     </div>
   );
 };
