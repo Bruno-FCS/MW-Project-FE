@@ -26,7 +26,7 @@ const ProductPage = () => {
       }
     }
 
-    fetch(`http://localhost:8000/product/${id}`)
+    fetch(`https://mw-project-be.vercel.app/product/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -69,7 +69,6 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = () => {
-
     let savedCart = localStorage.getItem("cart");
     if (savedCart) {
       let parsedCart = JSON.parse(savedCart);
@@ -94,11 +93,10 @@ const ProductPage = () => {
         ? product.title.slice(0, 25) + "..."
         : product.title;
 
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
       window.location.href = "/login";
-      alert("Please login to access your added items!")
-    }
-    else {
+      alert("Please login to access your added items!");
+    } else {
       alert(`${pr_title} was added to the cart!`);
     }
   };
@@ -213,7 +211,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <Footer pos={"absolute"}/>
+      <Footer pos={"absolute"} />
     </div>
   );
 };

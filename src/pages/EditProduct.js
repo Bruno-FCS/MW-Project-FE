@@ -32,7 +32,7 @@ const EditProduct = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/product/edit/${id}`,
+          `https://mw-project-be.vercel.app/product/edit/${id}`,
           {
             headers: {
               Authorization: token,
@@ -82,7 +82,7 @@ const EditProduct = () => {
       quantity: updatedProduct.quantity,
     };
 
-    fetch(`http://localhost:8000/product/edit/${id}`, {
+    fetch(`https://mw-project-be.vercel.app/product/edit/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -225,8 +225,8 @@ const EditProduct = () => {
                   className="form-control"
                   name="rating"
                   type="number"
-                min={1}
-                max={5}
+                  min={1}
+                  max={5}
                   value={updatedProduct.rating}
                   onChange={handleInputChange}
                   style={{
@@ -284,7 +284,7 @@ const EditProduct = () => {
           </p>
         )}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
