@@ -48,7 +48,12 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="index-container">
+    <div
+      className="index-container"
+      style={{
+        overflow: "hidden",
+      }}
+    >
       <Navbar />
       <div
         className="add-product-container"

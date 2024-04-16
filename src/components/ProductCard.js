@@ -11,6 +11,8 @@ const ProductCard = ({ product }) => {
         padding: "10px",
         borderRadius: "5px",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <img src={product.image} width={100} alt="product_image" />

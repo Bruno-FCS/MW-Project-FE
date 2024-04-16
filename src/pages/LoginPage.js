@@ -46,7 +46,12 @@ const Login = () => {
   };
 
   return (
-    <div className="index-container">
+    <div
+      className="index-container"
+      style={{
+        overflow: "hidden",
+      }}
+    >
       <Navbar />
       <div className="login-container">
         <div className="login-form">
@@ -111,22 +116,7 @@ const Login = () => {
               <p style={{ color: "#143a27" }}>
                 Haven't registered? Register here!
               </p>
-              <button
-                onClick={handleRegister}
-                id="btn-register"
-                style={
-                  {
-                    // backgroundColor: "#143A27",
-                    // color: "white",
-                    // border: "none",
-                    // padding: "0.5rem 1rem",
-                    // borderRadius: "4px",
-                    // cursor: "pointer",
-                    // fontSize: "1rem",
-                    // transition: "background-color 0.3s ease",
-                  }
-                }
-              >
+              <button onClick={handleRegister} id="btn-register">
                 Create an account
               </button>
             </div>

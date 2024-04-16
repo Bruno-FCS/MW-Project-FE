@@ -56,13 +56,14 @@ const CartPage = () => {
   };
 
   return (
-    <div className="index-container">
+    <div
+      className="index-container"
+      style={{
+        overflow: "hidden",
+      }}
+    >
       <Navbar />
-      <div
-        style={{
-          backgroundColor: "#f5f5f5",
-        }}
-      >
+      <div>
         <div
           style={{
             backgroundColor: "#3495EB",

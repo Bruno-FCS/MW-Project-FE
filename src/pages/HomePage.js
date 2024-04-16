@@ -17,7 +17,12 @@ const HomePage = ({ products }) => {
   }, []);
 
   return (
-    <div className="index-container">
+    <div
+      className="index-container"
+      style={{
+        overflow: "hidden",
+      }}
+    >
       <Navbar />
       {userName && (
         <p

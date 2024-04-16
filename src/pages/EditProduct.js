@@ -99,7 +99,12 @@ const EditProduct = () => {
   };
 
   return (
-    <div className="index-container">
+    <div
+      className="index-container"
+      style={{
+        overflow: "hidden",
+      }}
+    >
       <Navbar />
       <div
         className="edit-product-container"
