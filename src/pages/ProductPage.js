@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import '../styles/ProductPage.css'
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});
@@ -15,7 +16,6 @@ const ProductPage = () => {
     if (token) {
       setIsLoggedIn(true);
     }
-    
 
     fetch(`https://mw-project-be.vercel.app/product/${id}`)
       .then((response) => response.json())
@@ -90,78 +90,66 @@ const ProductPage = () => {
   const isAuthorized = isLoggedIn && userName === "admin";
 
   return (
-    <div className="book-container-book">
+    <div className="product-page-container">
       <Navbar />
-      <div
-        className="product-details"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "20px",
-          padding: "20px",
-          backgroundColor: "white",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-          borderRadius: "5px",
-          flexGrow: 1, 
-        }}
-      >
-        <img src={product.image} width={250} alt="product_image" />
-
-        <h1 className="book-title">{product.title}</h1>
-        <h5 className="book-author">CAD$ {product.price}</h5>
-
-        <div className="book-details">
-          <p>Category: {product.category}</p>
-          <p>Rating: {product.rating}</p>
-          <p>Quantity: {product.quantity}</p>
-          <p>Description: {product.description}</p>
-        </div>
-
-        <div className="book-btn-container">
-          {isAuthorized && (
-            <div>
-              <Link
-                className="book-btn edit-book-btn"
-                to={`/product/edit/${product._id}`}
-              >
-                Edit Prodcut
-              </Link>
+      <div className="product-details-container">
+        <img src={product.image} width={300} alt="product_image" />
+        <div className="product-info">
+          <h1 className="product-title">{product.title}</h1>
+          <h3 className="product-price">CAD$ {product.price}</h3>
+          <div className="product-details">
+            <p>Category: {product.category}</p>
+            <p>Rating: {product.rating}</p>
+            <p>Quantity: {product.quantity}</p>
+            <p>Description: {product.description}</p>
+          </div>
+          <div className="product-actions">
+            {isAuthorized && (
+              <div>
+                <Link
+                  className="product-btn edit-product-btn"
+                  to={`/product/edit/${product._id}`}
+                >
+                  Edit Product
+                </Link>
+                <button
+                  className="product-btn delete-product-btn"
+                  data-id={product._id}
+                  onClick={handleDelete}
+                >
+                  Delete Product
+                </button>
+              </div>
+            )}
+            <div className="quantity-controls">
               <button
-                className="book-btn delete-book-btn"
-                data-id={product._id}
-                onClick={handleDelete}
+                className="quantity-btn"
+                onClick={() => {
+                  if (quantity > 1) setQuantity(quantity - 1);
+                }}
               >
-                Delete Product
+                -
+              </button>
+              <div className="quantity-value">{quantity}</div>
+              <button
+                className="quantity-btn"
+                onClick={() => {
+                  setQuantity(quantity + 1);
+                }}
+              >
+                +
+              </button>
+              <button
+                className="product-btn add-to-cart-btn"
+                onClick={handleAddToCart}
+              >
+                Add to Cart
               </button>
             </div>
-          )}
-          <div
-            style={{
-              display: "flex",
-              width: 150,
-              justifyContent: "space-between",
-            }}
-          >
-            <button
-              onClick={() => {
-                if (quantity > 1) setQuantity(quantity - 1);
-              }}
-            >
-              -
-            </button>
-            <div>{quantity}</div>
-            <button
-              onClick={() => {
-                setQuantity(quantity + 1);
-              }}
-            >
-              +
-            </button>
-            <button onClick={handleAddToCart}>Add to Cart</button>
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };
