@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const EditProduct = () => {
   const [product, setProduct] = useState({});
@@ -31,7 +32,7 @@ const EditProduct = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://mw-project-be.vercel.app/product/edit/${id}`,
+          `http://localhost:8000/product/edit/${id}`,
           {
             headers: {
               Authorization: token,
@@ -81,7 +82,7 @@ const EditProduct = () => {
       quantity: updatedProduct.quantity,
     };
 
-    fetch(`https://mw-project-be.vercel.app/product/edit/${id}`, {
+    fetch(`http://localhost:8000/product/edit/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +99,7 @@ const EditProduct = () => {
   };
 
   return (
-    <div className="edit-book-container">
+    <div className="edit-product-container">
       <Navbar />
       {isAuthorized ? (
         <>
@@ -165,6 +166,8 @@ const EditProduct = () => {
                 className="form-control"
                 name="rating"
                 type="number"
+                min={1}
+                max={5}
                 value={updatedProduct.rating}
                 onChange={handleInputChange}
               />
@@ -187,6 +190,7 @@ const EditProduct = () => {
       ) : (
         <p>You are not authorized to view this page.</p>
       )}
+      <Footer/>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -35,16 +36,13 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch(
-        "https://mw-project-be.vercel.app/user/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:8000/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await response.json();
       if (!response.ok) {
         setErrors(data.errors || []);
@@ -125,6 +123,7 @@ const Register = () => {
 
         <button type="submit">Submit</button>
       </form>
+      <Footer pos={"absolute"}/>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const TAX = 0.13;
 
@@ -55,11 +56,12 @@ const CartPage = () => {
   };
 
   return (
-    <div className="index-container">
+    <div className="index-container" >
       <Navbar />
       <div
         style={{
-          backgroundColor: "lightgreen",
+          backgroundColor: "#3495EB",
+          color: "white",
           width: 600,
           textAlign: "center",
           padding: 10,
@@ -67,24 +69,26 @@ const CartPage = () => {
           display: display,
         }}
       >
-        Your order has been received successfully, thank you for shopping with
+        Your order has been processed successfully, thank you for shopping with
         e-Shop!
       </div>
+
       {cart.map((product) => (
-        <div key={product._id} className="book-container">
+        
+        <div key={product._id} className="product-container">
           <img src={product.image} width={75} alt={product.title} />
           <div className="title-box">
-            <label className="book-title">
+            <label className="product-title">
               <a href={`/product/${product._id}`} className="title-link">
                 {product.title}
               </a>
             </label>
           </div>
           <div className="info-box">
-            <p className="book-info">
+            <p className="product-info">
               Unit price: CAD$ {product.price.toFixed(2)}
             </p>
-            <p className="book-info">
+            <p className="product-info">
               Quantity:{" "}
               <button onClick={() => handleDecreaseQuantity(product._id)}>
                 -
@@ -94,7 +98,7 @@ const CartPage = () => {
                 +
               </button>
             </p>
-            <p className="book-info">
+            <p className="product-info">
               Subtotal: CAD$ {(product.quantity * product.price).toFixed(2)}
             </p>
           </div>
@@ -107,18 +111,26 @@ const CartPage = () => {
       ))}
 
       {cart.length > 0 ? (
-        <>
-          <div>Summary</div>
-          <div>Total: CAD$ {totalPrice()}</div>
-          <div>Tax (13%): CAD$ {(totalPrice() * TAX).toFixed(2)}</div>
-          <div style={{ fontWeight: "bold" }}>
-            Final Price: CAD$ {(totalPrice() * (1 + TAX)).toFixed(2)}
+        <div>
+          <div class="d-flex card align-items-center ">
+            <div class="card-header">Summary</div>
+            <div>Total: CAD$ {totalPrice()}</div>
+            <div>Tax (13%): CAD$ {(totalPrice() * TAX).toFixed(2)}</div>
+            <div style={{ fontWeight: "bold" }}>
+              Final Price: CAD$ {(totalPrice() * (1 + TAX)).toFixed(2)}
+            </div>
           </div>
           <button onClick={handleCheckOut}>Place Order</button>
-        </>
+        </div>
       ) : (
-        <div>The cart is empty</div>
+        <div 
+          class="d-flex justify-content-center align-self-center rounded fw-bold" 
+          style={{color: "#143A27", marginTop: 50, marginBottom: 50}}
+        >
+          Your cart is empty...
+        </div>
       )}
+      <Footer pos={"absolute"}/>
     </div>
   );
 };
