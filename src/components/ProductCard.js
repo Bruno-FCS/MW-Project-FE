@@ -13,6 +13,8 @@ const ProductCard = ({ product }) => {
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         alignItems: "center",
         justifyContent: "center",
+        display: "flex",
+        flexDirection: "row"
       }}
     >
       <img src={product.image} width={100} alt="product_image" />
