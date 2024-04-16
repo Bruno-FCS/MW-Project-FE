@@ -19,7 +19,18 @@ const HomePage = ({ products }) => {
   return (
     <div className="index-container">
       <Navbar />
-      {userName && <p>Hello, {userName}!</p>}
+      {userName && (
+        <p
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: "bold",
+            color: "#39b575",
+            marginBottom: "1.5rem",
+          }}
+        >
+          Hello, {userName}!
+        </p>
+      )}
       <div
         className="product-grid"
         style={{
