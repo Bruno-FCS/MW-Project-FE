@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});
@@ -14,6 +15,7 @@ const ProductPage = () => {
     if (token) {
       setIsLoggedIn(true);
     }
+    
 
     fetch(`https://mw-project-be.vercel.app/product/${id}`)
       .then((response) => response.json())
@@ -90,61 +92,76 @@ const ProductPage = () => {
   return (
     <div className="book-container-book">
       <Navbar />
-      <img src={product.image} width={250} alt="product_image" />
+      <div
+        className="product-details"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "20px",
+          padding: "20px",
+          backgroundColor: "white",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          borderRadius: "5px",
+          flexGrow: 1, 
+        }}
+      >
+        <img src={product.image} width={250} alt="product_image" />
 
-      <h1 className="book-title">{product.title}</h1>
-      <h5 className="book-author">CAD$ {product.price}</h5>
+        <h1 className="book-title">{product.title}</h1>
+        <h5 className="book-author">CAD$ {product.price}</h5>
 
-      <div className="book-details">
-        <p>Category: {product.category}</p>
-        <p>Rating: {product.rating}</p>
-        <p>Quantity: {product.quantity}</p>
-        <p>Description: {product.description}</p>
-      </div>
+        <div className="book-details">
+          <p>Category: {product.category}</p>
+          <p>Rating: {product.rating}</p>
+          <p>Quantity: {product.quantity}</p>
+          <p>Description: {product.description}</p>
+        </div>
 
-      <div className="book-btn-container">
-        {isAuthorized && (
-          <div>
-            <Link
-              className="book-btn edit-book-btn"
-              to={`/product/edit/${product._id}`}
-            >
-              Edit Prodcut
-            </Link>
+        <div className="book-btn-container">
+          {isAuthorized && (
+            <div>
+              <Link
+                className="book-btn edit-book-btn"
+                to={`/product/edit/${product._id}`}
+              >
+                Edit Prodcut
+              </Link>
+              <button
+                className="book-btn delete-book-btn"
+                data-id={product._id}
+                onClick={handleDelete}
+              >
+                Delete Product
+              </button>
+            </div>
+          )}
+          <div
+            style={{
+              display: "flex",
+              width: 150,
+              justifyContent: "space-between",
+            }}
+          >
             <button
-              className="book-btn delete-book-btn"
-              data-id={product._id}
-              onClick={handleDelete}
+              onClick={() => {
+                if (quantity > 1) setQuantity(quantity - 1);
+              }}
             >
-              Delete Product
+              -
             </button>
+            <div>{quantity}</div>
+            <button
+              onClick={() => {
+                setQuantity(quantity + 1);
+              }}
+            >
+              +
+            </button>
+            <button onClick={handleAddToCart}>Add to Cart</button>
           </div>
-        )}
-        <div
-          style={{
-            display: "flex",
-            width: 150,
-            justifyContent: "space-between",
-          }}
-        >
-          <button
-            onClick={() => {
-              if (quantity > 1) setQuantity(quantity - 1);
-            }}
-          >
-            -
-          </button>
-          <div>{quantity}</div>
-          <button
-            onClick={() => {
-              setQuantity(quantity + 1);
-            }}
-          >
-            +
-          </button>
-          <button onClick={handleAddToCart}>Add to Cart</button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
