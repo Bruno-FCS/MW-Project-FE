@@ -110,6 +110,7 @@ const ProductPage = () => {
         style={{
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
           gap: "20px",
           padding: "20px",
           backgroundColor: "white",
