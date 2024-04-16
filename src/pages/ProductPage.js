@@ -43,12 +43,15 @@ const ProductPage = () => {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const response = await fetch(`http://localhost:8000/product/${id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: token,
-          },
-        });
+        const response = await fetch(
+          `https://mw-project-be.vercel.app/product/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
         if (response.ok) {
           const data = await response.json();
           console.log(data.message);

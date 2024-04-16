@@ -24,7 +24,6 @@ const Navbar = () => {
         alignItems: "center",
         padding: "1rem 2rem",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        marginBottom: 20,
       }}
     >
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
