@@ -121,10 +121,10 @@ const ProductPage = () => {
         <img src={product.image} width={250} alt="product_image" />
         <div>
           <h1 className="product-title">{product.title}</h1>
-          <h5 className="product-price">CAD$ {product.price}</h5>
+          <h3 className="product-price">CAD$ {product.price.toFixed(2)}</h3>
           <div className="product-details">
             <p>Category: {product.category}</p>
-            <p>Rating: {product.rating}</p>
+            <p>Rating: {product.rating}/5</p>
             <p>Quantity: {product.quantity}</p>
             <p>Description: {product.description}</p>
           </div>
