@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Footer from "../components/Footer";
 
 const EditProduct = () => {
   const [product, setProduct] = useState({});
