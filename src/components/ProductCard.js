@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
         alignItems: "center",
         justifyContent: "center",
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "column"
       }}
     >
       <img src={product.image} width={100} alt="product_image" />
