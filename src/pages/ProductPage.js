@@ -3,11 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import '../styles/ProductPage.css'
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
 
@@ -15,6 +15,15 @@ const ProductPage = () => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
+      try {
+        const decodedToken = jwtDecode(token);
+        const userName = decodedToken.name;
+        setIsAuthorized(userName === "admin");
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        setIsLoggedIn(false);
+        setIsAuthorized(false);
+      }
     }
 
     fetch(`https://mw-project-be.vercel.app/product/${id}`)
@@ -32,22 +41,27 @@ const ProductPage = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(
-        `https://mw-project-be.vercel.app/product/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: token,
-          },
+      const token = localStorage.getItem("token");
+      if (token) {
+        const response = await fetch(
+          `https://mw-project-be.vercel.app/product/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.message);
+          alert("Successfully deleted");
+          window.location.href = "/";
+        } else {
+          console.error("Error deleting product:", response.statusText);
         }
-      );
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data.message);
-        alert("Successfully deleted");
-        window.location.href = "/";
       } else {
-        console.error("Error deleting product:", response.statusText);
+        console.error("No token found in local storage");
       }
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -83,20 +97,25 @@ const ProductPage = () => {
     //temporary alert - add an cart icon that has the number of items (in the cart) displayed for user if there is at least one item
   };
 
-  const token = localStorage.getItem("token");
-  const decodedToken = jwtDecode(token);
-  const userName = decodedToken.name;
-
-  const isAuthorized = isLoggedIn && userName === "admin";
-
   return (
-    <div className="product-page-container">
+    <div className="product-container">
       <Navbar />
-      <div className="product-details-container">
-        <img src={product.image} width={300} alt="product_image" />
-        <div className="product-info">
+      <div
+        className="product-details"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "20px",
+          padding: "20px",
+          backgroundColor: "white",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          borderRadius: "5px",
+        }}
+      >
+        <img src={product.image} width={250} alt="product_image" />
+        <div>
           <h1 className="product-title">{product.title}</h1>
-          <h3 className="product-price">CAD$ {product.price}</h3>
+          <h5 className="product-price">CAD$ {product.price}</h5>
           <div className="product-details">
             <p>Category: {product.category}</p>
             <p>Rating: {product.rating}</p>
@@ -109,6 +128,13 @@ const ProductPage = () => {
                 <Link
                   className="product-btn edit-product-btn"
                   to={`/product/edit/${product._id}`}
+                  style={{
+                    backgroundColor: "#39b575",
+                    color: "white",
+                    textDecoration: "none",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                  }}
                 >
                   Edit Product
                 </Link>
@@ -116,32 +142,64 @@ const ProductPage = () => {
                   className="product-btn delete-product-btn"
                   data-id={product._id}
                   onClick={handleDelete}
+                  style={{
+                    backgroundColor: "#39b575",
+                    color: "white",
+                    border: "none",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                  }}
                 >
                   Delete Product
                 </button>
               </div>
             )}
-            <div className="quantity-controls">
+            <div
+              style={{
+                display: "flex",
+                width: 150,
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <button
-                className="quantity-btn"
                 onClick={() => {
                   if (quantity > 1) setQuantity(quantity - 1);
+                }}
+                style={{
+                  backgroundColor: "#39b575",
+                  color: "white",
+                  border: "none",
+                  padding: "5px 10px",
+                  borderRadius: "5px",
                 }}
               >
                 -
               </button>
-              <div className="quantity-value">{quantity}</div>
+              <div>{quantity}</div>
               <button
-                className="quantity-btn"
                 onClick={() => {
                   setQuantity(quantity + 1);
+                }}
+                style={{
+                  backgroundColor: "#39b575",
+                  color: "white",
+                  border: "none",
+                  padding: "5px 10px",
+                  borderRadius: "5px",
                 }}
               >
                 +
               </button>
               <button
-                className="product-btn add-to-cart-btn"
                 onClick={handleAddToCart}
+                style={{
+                  backgroundColor: "#39b575",
+                  color: "white",
+                  border: "none",
+                  padding: "5px 10px",
+                  borderRadius: "5px",
+                }}
               >
                 Add to Cart
               </button>
@@ -149,7 +207,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
