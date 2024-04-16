@@ -14,34 +14,80 @@ const Navbar = () => {
   };
 
   return (
-    <div className="nav">
-      <Link to="/">
-        <img src={require("../assets/e-Shop-s.png")} width={100} alt="logo" />
+    <nav
+      className="navbar"
+      style={{
+        backgroundColor: "#39b575",
+        color: "white",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "1rem 2rem",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+        <img
+          src={require("../assets/e-Shop-s.png")}
+          width={100}
+          alt="logo"
+          style={{ marginRight: "1rem" }}
+        />
       </Link>
-      <br />
-      {isLoggedIn && (
-        <>
-          <Link to="/cart">Cart</Link>
-          <br />
-          <button onClick={handleLogout}>Logout</button>
-          <br />
-        </>
-      )}
-      {!isLoggedIn && (
-        <>
-          <Link to="/register">Register</Link>
-          <br />
-          <Link to="/login">Login</Link>
-          <br />
-        </>
-      )}
-      {isAuthorized && (
-        <>
-          <Link to="/product/add">Add Product</Link>
-          <br />
-        </>
-      )}
-    </div>
+      <div
+        className="navbar-links"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+        }}
+      >
+        {isLoggedIn && (
+          <>
+            <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
+              Cart
+            </Link>
+            <button
+              onClick={handleLogout}
+              style={{
+                backgroundColor: "#39b575",
+                color: "white",
+                border: "none",
+                padding: "0.5rem 1rem",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
+        {!isLoggedIn && (
+          <>
+            <Link
+              to="/register"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Register
+            </Link>
+            <Link
+              to="/login"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Login
+            </Link>
+          </>
+        )}
+        {isAuthorized && (
+          <Link
+            to="/product/add"
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            Add Product
+          </Link>
+        )}
+      </div>
+    </nav>
   );
 };
 
