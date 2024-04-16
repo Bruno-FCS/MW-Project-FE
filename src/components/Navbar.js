@@ -14,18 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className="navbar"
-      style={{
-        backgroundColor: "#39b575",
-        color: "white",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "1rem 2rem",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-      }}
-    >
+    <nav className="navbar">
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
         <img
           src={require("../assets/e-Shop-s.png")}
@@ -44,15 +33,24 @@ const Navbar = () => {
       >
         {isLoggedIn && (
           <>
+          {isAuthorized && (
+              <Link
+                to="/product/add"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Add Product
+              </Link>
+            )}
             <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
               Cart
             </Link>
+            
             <button
               onClick={handleLogout}
               style={{
                 backgroundColor: "#39b575",
                 color: "white",
-                border: "none",
+                borderColor: "#143a27",
                 padding: "0.5rem 1rem",
                 borderRadius: "5px",
                 cursor: "pointer",
@@ -78,14 +76,14 @@ const Navbar = () => {
             </Link>
           </>
         )}
-        {isAuthorized && (
+        {/* {isAuthorized && (
           <Link
             to="/product/add"
             style={{ color: "white", textDecoration: "none" }}
           >
             Add Product
           </Link>
-        )}
+        )} */}
       </div>
     </nav>
   );

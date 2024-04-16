@@ -64,66 +64,192 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="index-container">
       <Navbar />
-      {errors.length > 0 && (
-        <div>
-          {errors.map((error) => (
-            <p key={error.id} style={{ color: "red" }}>
-              {error.msg}
-            </p>
-          ))}
-        </div>
-      )}
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
+      <div
+        className="register-container"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "2rem",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        <div
+          className="register-form"
+          style={{
+            backgroundColor: "white",
+            borderRadius: "8px",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            padding: "2rem",
+            width: "100%",
+            maxWidth: "400px",
+          }}
+        >
+          <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>
+            Register
+          </h1>
+          {errors.length > 0 && (
+            <div
+              style={{
+                marginBottom: "1rem",
+              }}
+            >
+              {errors.map((error) => (
+                <p
+                  key={error.id}
+                  style={{
+                    color: "red",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {error.msg}
+                </p>
+              ))}
+            </div>
+          )}
+          <form onSubmit={handleSubmit}>
+            <div
+              className="form-group"
+              style={{
+                marginBottom: "1.5rem",
+              }}
+            >
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Name:
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                style={{
+                  width: "100%",
+                  padding: "0.5rem",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              />
+            </div>
 
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
+            <div
+              className="form-group"
+              style={{
+                marginBottom: "1.5rem",
+              }}
+            >
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Email:
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                style={{
+                  width: "100%",
+                  padding: "0.5rem",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              />
+            </div>
 
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
+            <div
+              className="form-group"
+              style={{
+                marginBottom: "1.5rem",
+              }}
+            >
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Password:
+              </label>
+              <input
+                className="form-control"
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                style={{
+                  width: "100%",
+                  padding: "0.5rem",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              />
+            </div>
 
-        <div>
-          <label htmlFor="confirm_password">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirm_password"
-            name="confirm_password"
-            value={formData.confirm_password}
-            onChange={handleChange}
-          />
-        </div>
+            <div
+              className="form-group"
+              style={{
+                marginBottom: "1.5rem",
+              }}
+            >
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Confirm Password:
+              </label>
+              <input
+                className="form-control"
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                value={formData.confirm_password}
+                onChange={handleChange}
+                style={{
+                  width: "100%",
+                  padding: "0.5rem",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
+              />
+            </div>
 
-        <button type="submit">Submit</button>
-      </form>
-      <Footer pos={"absolute"}/>
+            <button
+              id=""
+              type="submit"
+              style={{
+                backgroundColor: "#39b575",
+                color: "white",
+                border: "none",
+                padding: "0.5rem 1rem",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontSize: "1rem",
+                transition: "background-color 0.3s ease",
+              }}
+            >
+              Complete registeration
+            </button>
+          </form>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };

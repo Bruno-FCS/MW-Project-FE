@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import "../App.css";
 import Footer from "../components/Footer";
-import "../styles.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,46 +36,101 @@ const Login = () => {
     } catch (error) {
       setError(error.message);
     }
+    alert("Welcome to e-Shop! Happy shopping!");
+  };
+  const handleRegister = () => {
+    window.location.href = "/register";
   };
 
   return (
-    <div>
+    <div className="index-container">
       <Navbar />
-      <div class="card p-1 align-items-center m-5 " style={{borderColor: "#143A27"}}>
-        <h1 class="card-title">Login</h1>
+      <div className="login-container">
+        <div className="login-form">
+          <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>Login</h1>
 
-        {error && <p>{error}</p>}
+          {error && <p className="error">{error}</p>}
+          {errors.length > 0 && (
+            <ul className="error">
+              {errors.map((err, index) => (
+                <li key={index}>{err}</li>
+              ))}
+            </ul>
+          )}
+          <form onSubmit={handleLogin}>
+            <div
+              className="form-group"
+              style={{
+                marginBottom: "1.5rem",
+              }}
+            >
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Email:
+              </label>
+              <input
+                className="form-control"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-        {errors.length > 0 && (
-          <ul id="error">
-            {errors.map((err, index) => (
-              <li key={index}>{err}</li>
-            ))}
-          </ul>
-        )}
-        <form onSubmit={handleLogin} class="card-body">
-          <div class="mb-1">
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <button type="submit">Login</button>
-        </form>
+            <div
+              className="form-group"
+              style={{
+                marginBottom: "1.5rem",
+              }}
+            >
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Password:
+              </label>
+              <input
+                className="form-control"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="btn-group">
+              <button type="submit" className="btn-log-in">
+                Login
+              </button>
+              <p style={{ color: "#143a27" }}>
+                Haven't registered? Register here!
+              </p>
+              <button
+                onClick={handleRegister}
+                id="btn-register"
+                style={
+                  {
+                    // backgroundColor: "#143A27",
+                    // color: "white",
+                    // border: "none",
+                    // padding: "0.5rem 1rem",
+                    // borderRadius: "4px",
+                    // cursor: "pointer",
+                    // fontSize: "1rem",
+                    // transition: "background-color 0.3s ease",
+                  }
+                }
+              >
+                Create an account
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <Footer pos={"absolute"}/>
+      <Footer pos={"absolute"} />
     </div>
   );
 };
