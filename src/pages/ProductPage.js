@@ -103,7 +103,12 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="product-container">
+    <div className="product-container"
+      style={{
+        overflow: "hidden",
+
+      }}
+    >
       <Navbar />
       <div
         className="product-details"
