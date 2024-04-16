@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const AddProduct = () => {
   const [newProduct, setNewProduct] = useState({
@@ -270,6 +271,7 @@ const AddProduct = () => {
             You are not authorized to view this page.
           </p>
         )}
+        <Footer/>
       </div>
   );
 };
