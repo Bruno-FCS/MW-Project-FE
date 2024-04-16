@@ -3,8 +3,6 @@ import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
-import ProductCard from "../components/ProductCard";
-import Footer from "../components/Footer";
 
 const HomePage = ({ products }) => {
   const [userName, setUserName] = useState("");
