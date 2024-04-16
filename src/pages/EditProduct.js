@@ -151,8 +151,15 @@ const EditProduct = () => {
                 />
               </div>
 
-              <div id="form-group">
-                <label>Price:</label>
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Price:
+                </label>
                 <input
                   className="form-control"
                   name="price"
@@ -168,8 +175,15 @@ const EditProduct = () => {
                 />
               </div>
 
-              <div id="form-group">
-                <label>Description:</label>
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Description:
+                </label>
                 <input
                   className="form-control"
                   name="description"
@@ -185,8 +199,15 @@ const EditProduct = () => {
                 />
               </div>
 
-              <div id="form-group">
-                <label>Category:</label>
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Category:
+                </label>
                 <input
                   className="form-control"
                   name="category"
@@ -202,8 +223,15 @@ const EditProduct = () => {
                 />
               </div>
 
-              <div id="form-group">
-                <label>Image URL:</label>
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Image URL:
+                </label>
                 <input
                   className="form-control"
                   name="image"
@@ -219,8 +247,15 @@ const EditProduct = () => {
                 />
               </div>
 
-              <div id="form-group">
-                <label>Rating:</label>
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Rating:
+                </label>
                 <input
                   className="form-control"
                   name="rating"
@@ -238,8 +273,15 @@ const EditProduct = () => {
                 />
               </div>
 
-              <div id="form-group">
-                <label>Quantity in stock:</label>
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Quantity in stock:
+                </label>
                 <input
                   className="form-control"
                   name="quantity"

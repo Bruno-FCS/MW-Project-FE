@@ -45,7 +45,7 @@ const HomePage = ({ products }) => {
       </div>
       <br />
       <br />
-      <Footer />
+      <Footer pos={"sticky"} />
     </div>
   );
 };

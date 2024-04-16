@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+// import "../styles/ProductPage.css"
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});
@@ -114,6 +115,7 @@ const ProductPage = () => {
           backgroundColor: "white",
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
           borderRadius: "5px",
+          width: "80%",
         }}
       >
         <img src={product.image} width={250} alt="product_image" />
@@ -138,6 +140,8 @@ const ProductPage = () => {
                     textDecoration: "none",
                     padding: "5px 10px",
                     borderRadius: "5px",
+                    fontSize: "13px",
+                    margin: 2,
                   }}
                 >
                   Edit Product
@@ -150,8 +154,12 @@ const ProductPage = () => {
                     backgroundColor: "#39b575",
                     color: "white",
                     border: "none",
-                    padding: "5px 10px",
+                    padding: "6px 7px",
                     borderRadius: "5px",
+                    fontSize: "13px",
+                    margin: 2,
+                    alignSelf: "center",
+                    cursor: "pointer",
                   }}
                 >
                   Delete Product
@@ -166,20 +174,30 @@ const ProductPage = () => {
                 alignItems: "center",
               }}
             >
-              <button
-                onClick={() => {
-                  if (quantity > 1) setQuantity(quantity - 1);
-                }}
+              {" "}
+              <div
                 style={{
-                  backgroundColor: "#39b575",
-                  color: "white",
-                  border: "none",
-                  padding: "5px 10px",
-                  borderRadius: "5px",
+                  display: "flex",
+                  flexDirection: "row",
+                  // marginRight: 5,
                 }}
               >
-                -
-              </button>
+                <button
+                  onClick={() => {
+                    if (quantity > 1) setQuantity(quantity - 1);
+                  }}
+                  style={{
+                    backgroundColor: "#39b575",
+                    color: "white",
+                    border: "none",
+                    padding: "2px 10px",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                  }}
+                >
+                  -
+                </button>
+              </div>
               <div>{quantity}</div>
               <button
                 onClick={() => {
@@ -189,8 +207,9 @@ const ProductPage = () => {
                   backgroundColor: "#39b575",
                   color: "white",
                   border: "none",
-                  padding: "5px 10px",
+                  padding: "2px 10px",
                   borderRadius: "5px",
+                  cursor: "pointer",
                 }}
               >
                 +
@@ -201,8 +220,10 @@ const ProductPage = () => {
                   backgroundColor: "#39b575",
                   color: "white",
                   border: "none",
-                  padding: "5px 10px",
+                  padding: "5px 7px",
                   borderRadius: "5px",
+                  marginTop: 2,
+                  cursor: "pointer",
                 }}
               >
                 Add to Cart
@@ -211,7 +232,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <Footer pos={"absolute"} />
+      <Footer pos={"sticky"} />
     </div>
   );
 };
